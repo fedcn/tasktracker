@@ -20,11 +20,12 @@ class Task
     /**
      * @ORM\Column(type="integer")
      */
-    private $board_id;
+    private $column;
     
     
     private $name;
     private $description;
+    private $order;
     
     private $created_at;
     private $changed_at;
