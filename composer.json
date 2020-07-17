@@ -12,7 +12,8 @@
         "symfony/yaml": "5.1.*"
     },
     "require-dev": {
-        "codeception/codeception": "^4.1"
+        "codeception/codeception": "^4.1",
+        "codeception/module-asserts": "^1.0.0"
     },
     "config": {
         "optimize-autoloader": true,
