@@ -23,7 +23,7 @@ class Board
     private $owner;
     private $participants;
     
-    public function __construct(string $name, User $owner, array $participants = [], string $description = null): void
+    public function __construct(string $name, User $owner, array $participants = [], string $description = null)
     {
         $this->name = $name;
         $this->description = $description;

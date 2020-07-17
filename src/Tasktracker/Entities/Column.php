@@ -31,7 +31,7 @@ class Column
      * @param int $order, порядок предыдущей колонки для той же доски
      * @return void
      */
-    public function __construct(string $name, Board $board, int $order): void
+    public function __construct(string $name, Board $board, int $order)
     {
         $this->board = $board;
         $this->name = $name;
