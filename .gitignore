@@ -10,3 +10,7 @@
 ###< symfony/framework-bundle ###
 /nbproject/private/
 /nbproject
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
