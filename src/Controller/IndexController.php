@@ -17,7 +17,7 @@ class IndexController extends AbstractController
     /**
      * @Route("/heroes/{id}", name="get_one_hero", methods={"GET"})
      */
-    public function get($id): JsonResponse
+    public function get(string $id): object
     {
         $hero = $this->heroRepository->findOneBy(['id' => $id]);
         
