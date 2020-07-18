@@ -18,11 +18,24 @@ class Column
     private $id;
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Board", inversedBy="columns")
+     * @ORM\JoinColumn(name="board_id", referencedColumnName="id")
      */
     private $board;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="columns")
+     */
+    private $tasks;
+    
+    /**
+     * @ORM\Column(type="string")
+     */
     private $name;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $order;
     
     /**
