@@ -52,16 +52,16 @@ class Board
      * @param string $description
      * @TODO: проверить начальное значение $participants
      */
-    public function __construct(string $name, User $owner, ArrayCollection $participants = null, string $description = null)
+    public function __construct(string $name, User $owner, string $description = null)
     {
         $this->name = $name;
         $this->description = $description;
         $this->columns = new ArrayCollection();
         $this->owner = $owner;
-        $this->participants = empty($participants) ? new ArrayCollection() : $participants;
+        $this->participants = new ArrayCollection();
     }
     
-    public function invite(User $participant)
+    public function add(User $participant)
     {
         $this->participants[] = $participant;
     }

@@ -44,12 +44,67 @@ class Task
     private $createdAt;
     
     /**
-     * @ORM\Column(type="datetime", name="changed_at")
+     * @ORM\Column(type="datetime", name="changed_at", nullable="true")
      */
     private $changedAt;
     
     /**
-     * @ORM\Column(type="datetime", name="deadline_at")
+     * @ORM\Column(type="datetime", name="deadline_at", nullable="true")
      */
     private $deadlineAt;
+    
+    public function __construct(Column $column, string $name, string $description, int $order)
+    {
+        $this->column = $column;
+        $this->name = $name;
+        $this->description = $description;
+        $this->order = $order;
+        $this->createdAt = new \DateTime();
+        $this->changedAt = null;
+        $this->deadlineAt = null;
+    }
+    
+    /**
+     * @param \App\Tasktracker\Entity\Column $column
+     */
+    public function setColumn(Column $column)
+    {
+        $this->column = $column;
+        $this->setChangedAt();
+    }
+    
+    public function setName(string $name)
+    {
+        $this->name = $name;
+        $this->setChangedAt();
+    }
+    
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
+        $this->setChangedAt();
+    }
+    
+    public function setOrder(int $order)
+    {
+        $this->order = $order;
+        $this->setChangedAt();
+    }
+    
+    public function setDeadlineAt(DateTime $deadlineAt)
+    {
+        $this->deadlineAt = $deadlineAt;
+        $this->setChangedAt();
+    }
+    
+    protected function setChangedAt()
+    {
+        $this->changedAt = new \DateTime();
+    }
+    
+    public function isExpired()
+    {
+        $now = new \DateTimeImmutable();
+        return $this->deadlineAt->getTimestamp() < $now->getTimestamp();
+    }
 }
