@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tasktracker\Entities;
+namespace App\Tasktracker\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;

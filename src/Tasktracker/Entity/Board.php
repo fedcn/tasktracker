@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tasktracker\Entities;
+namespace App\Tasktracker\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -47,7 +47,7 @@ class Board
     
     /**
      * @param string $name
-     * @param \App\Tasktracker\Entities\User $owner
+     * @param \App\Tasktracker\Entity\User $owner
      * @param ArrayCollection $participants
      * @param string $description
      * @TODO: проверить начальное значение $participants

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tasktracker\Entities;
+namespace App\Tasktracker\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,7 +40,7 @@ class Column
     
     /**
      * @param string $name
-     * @param \App\Tasktracker\Entities\Board $board
+     * @param \App\Tasktracker\Entity\Board $board
      * @param int $order, порядок предыдущей колонки для той же доски
      * @return void
      */

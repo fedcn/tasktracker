@@ -19,6 +19,6 @@ doctrine:
             Tasktracker:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/Tasktracker/Entities'
-                prefix: 'App\Tasktracker\Entities'
+                dir: '%kernel.project_dir%/src/Tasktracker/Entity'
+                prefix: 'App\Tasktracker\Entity'
                 alias: Tasktracker

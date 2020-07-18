@@ -20,7 +20,7 @@ class UserTest extends \Codeception\Test\Unit
     // tests
     public function testSuccessfulCreate()
     {
-        $user = new \App\Tasktracker\Entities\User('test', 'test@gmail.com');
+        $user = new \App\Tasktracker\Entity\User('test', 'test@gmail.com');
         $this->assertEquals('test', $user->getName());
         $this->assertEquals('test@gmail.com', $user->getEmail());
         $this->assertNotEmpty($user->getId());
@@ -29,10 +29,10 @@ class UserTest extends \Codeception\Test\Unit
     public function testEmptyUser()
     {
         $this->expectException(\InvalidArgumentException::class);
-        new \App\Tasktracker\Entities\User();
-        new \App\Tasktracker\Entities\User('');
-        new \App\Tasktracker\Entities\User('test');
-        new \App\Tasktracker\Entities\User('', '');
-        new \App\Tasktracker\Entities\User('test', '');
+        new \App\Tasktracker\Entity\User();
+        new \App\Tasktracker\Entity\User('');
+        new \App\Tasktracker\Entity\User('test');
+        new \App\Tasktracker\Entity\User('', '');
+        new \App\Tasktracker\Entity\User('test', '');
     }
 }

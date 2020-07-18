@@ -2,8 +2,8 @@
 
 namespace App\Tests;
 
-use App\Tasktracker\Entities\Board;
-use App\Tasktracker\Entities\User;
+use App\Tasktracker\Entity\Board;
+use App\Tasktracker\Entity\User;
 use Codeception\Test\Unit;
 
 class BoardTest extends Unit
