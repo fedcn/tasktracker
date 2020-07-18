@@ -45,6 +45,13 @@ class Board
      */
     private $participants;
     
+    /**
+     * @param string $name
+     * @param \App\Tasktracker\Entities\User $owner
+     * @param ArrayCollection $participants
+     * @param string $description
+     * @TODO: проверить начальное значение $participants
+     */
     public function __construct(string $name, User $owner, ArrayCollection $participants = null, string $description = null)
     {
         $this->name = $name;
