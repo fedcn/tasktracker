@@ -17,4 +17,19 @@ class UserMemoryRepository implements UserRepository
     {
         return $this->users;
     }
+
+    public function create(User $user)
+    {
+        return;
+    }
+
+    public function findByPk(int $id): ?User
+    {
+        return null;
+    }
+
+    public function update(User $user)
+    {
+        return;
+    }
 }

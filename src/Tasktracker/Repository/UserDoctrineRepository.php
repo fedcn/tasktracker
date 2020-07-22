@@ -40,4 +40,25 @@ class UserDoctrineRepository extends ServiceEntityRepository implements UserRepo
 
         return $query->getOneOrNullResult();
     }
+
+    public function create(User $user): void
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+    }
+    
+    public function update(User $user): void
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+    }
+    
+    public function updateAll(array $users): void
+    {
+        $em = $this->getEntityManager();
+        foreach ($users as $user) {
+            $em->persist($user);
+        }
+        $em->flush();
+    }
 }
