@@ -28,3 +28,5 @@ services:
     
     App\Tasktracker\Repository\UserRepository:
         class: App\Tasktracker\Repository\UserDoctrineRepository
+    test.App\Tasktracker\Repository\UserRepository:
+        class: App\Tasktracker\Repository\UserMemoryRepository

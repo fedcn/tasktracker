@@ -42,7 +42,7 @@ class UserController extends AbstractController
     /**
      * @param Request $request
      * @return object
-     * @Route("/user", name="create_user", method={"POST"})
+     * @Route("/user", name="create_user", methods={"POST"})
      */
     public function create(Request $request): object
     {
@@ -52,7 +52,7 @@ class UserController extends AbstractController
     /**
      * @param Request $request
      * @return object
-     * @Route("/user/{id}", name="update_user", method={"PATCH"})
+     * @Route("/user/{id}", name="update_user", methods={"PATCH"})
      */
     public function update(string $id, Request $request): object
     {
