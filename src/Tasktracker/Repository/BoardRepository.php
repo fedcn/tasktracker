@@ -6,7 +6,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use App\Tasktracker\Entity\Board;
 
-class BoardRepository extends ServiceEntityRepository
+class BoardRepository extends ServiceEntityRepository implements BoardRepository
 {
     
     public function __construct(ManagerRegistry $registry)
