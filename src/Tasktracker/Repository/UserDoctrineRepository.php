@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Tasktracker\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;

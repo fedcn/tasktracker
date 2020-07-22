@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repository;
+namespace App\Tasktracker\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use App\Tasktracker\Entity\Board;
 
-class BoardRepository extends ServiceEntityRepository implements BoardRepository
+class BoardDoctrineRepository extends ServiceEntityRepository implements BoardRepository
 {
     
     public function __construct(ManagerRegistry $registry)

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Tasktracker\Repository;
 
 use App\Tasktracker\Entity\Column;
 
