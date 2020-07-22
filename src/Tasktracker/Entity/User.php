@@ -39,9 +39,42 @@ class User
      */
     private $participantBoards;
     
-    public function __construct()
+    public function __construct(string $name, string $email)
     {
+        if (empty(trim($name))) {
+            throw new \InvalidArgumentException("User name must not be empty");
+        }
+        if (empty(trim($email))) {
+            throw new \InvalidArgumentException("User email must not be empty");
+        }
+        $this->name = $name;
+        $this->email = $email;
         $this->participantBoards = new ArrayCollection();
         $this->ownedBoards = new ArrayCollection();
+    }
+    
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getOwnedBoards()
+    {
+        return $this->ownedBoards;
+    }
+
+    public function getParticipantBoards()
+    {
+        return $this->participantBoards;
     }
 }
