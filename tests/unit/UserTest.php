@@ -23,12 +23,12 @@ class UserTest extends \Codeception\Test\Unit
         $user = new \App\Tasktracker\Entity\User('test', 'test@gmail.com');
         $this->assertEquals('test', $user->getName());
         $this->assertEquals('test@gmail.com', $user->getEmail());
-        $this->assertNotEmpty($user->getId());
     }
     
     public function testEmptyUser()
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(\ArgumentCountError::class);
         new \App\Tasktracker\Entity\User();
         new \App\Tasktracker\Entity\User('');
         new \App\Tasktracker\Entity\User('test');
