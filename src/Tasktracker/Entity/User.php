@@ -19,7 +19,7 @@ class User
     private $id;
     
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=True)
      */
     private $email;
     
@@ -76,5 +76,14 @@ class User
     public function getParticipantBoards()
     {
         return $this->participantBoards;
+    }
+    
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'name' => $this->name,
+        ];
     }
 }
