@@ -17,9 +17,11 @@
         "symfony/yaml": "5.1.*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.20",
         "codeception/codeception": "^4.1",
-        "codeception/module-asserts": "^1.0.0"
+        "codeception/module-asserts": "^1.0.0",
+        "codeception/module-phpbrowser": "^1.0",
+        "codeception/module-symfony": "^1.1",
+        "symfony/maker-bundle": "^1.20"
     },
     "config": {
         "optimize-autoloader": true,
