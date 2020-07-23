@@ -91,34 +91,10 @@ class UserController extends AbstractController
         $form->submit($data);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            var_dump($updatedModel);exit;
             $this->userRepository->save($updatedModel);
             return $this->json($updatedModel);
         }
 
         return $this->json($form->getErrors());
-        
-//        $user = $this->userRepository->findByPk($id);
-//        $form = new \App\Tasktracker\Entity\UserFilter();
-//        $form->load($user->toArray());
-//        $data = json_decode($request->getContent(), true);
-//        $form->load($data);
-//
-//        $errors = [];
-//        foreach ($validator->validate($form)->getIterator() as $error) {
-//            if (isset($errors[$error->getPropertyPath()])) {
-//                $errors[$error->getPropertyPath()] .= " " . $error->getMessage();
-//            } else {
-//                $errors[$error->getPropertyPath()] = $error->getMessage();
-//            }
-//        }
-//        if (count($errors) == 0) {
-//            $user->name = $form->name;
-//            $user->email = $form->email;
-//            $this->userRepository->update($user);
-//            return $this->redirectToRoute('get_user', ['id' => $user->getId()]);
-//        }
-//
-//        return $this->json($errors);
     }
 }
