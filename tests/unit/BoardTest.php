@@ -11,17 +11,12 @@ use InvalidArgumentException;
 class BoardTest extends Unit
 {
     /**
-     * @var Board
-     */
-    private $board;
-    /**
      * @var UnitTester
      */
     protected $tester;
     
-    protected function _before(Step\Unit\Board $board)
+    protected function _before()
     {
-        $this->board = $board->create();
     }
 
     protected function _after()
@@ -38,7 +33,7 @@ class BoardTest extends Unit
         $board = new Board('testBoard', $owner);
         $this->assertEquals('testBoard', $board->getName());
         $this->assertEquals($owner, $board->getOwner());
-        $this->assertEquals([], $board->getParticipants());
+        $this->assertEquals(0, count($board->getParticipants()));
         $this->assertEquals(null, $board->getDescription());
     }
     
@@ -48,7 +43,7 @@ class BoardTest extends Unit
     public function testAddParticipant()
     {
         $user1 = new User('testUser1', 'testuser1@gmail.com');
-        $board = $this->board;
+        $board = $this->createBoard();
         $board->add($user1);
         $this->assertEquals(1, count($board->getParticipants()));
     }
@@ -61,5 +56,11 @@ class BoardTest extends Unit
         new Board();
         new Board('');
         new Board('', $owner);
+    }
+    
+    private function createBoard(): Board
+    {
+        $owner = new User('testUser', 'testuser@gmail.com');
+        return new Board('testBoard', $owner);
     }
 }

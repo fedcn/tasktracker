@@ -52,7 +52,7 @@ class Board
      * @param string $description
      * @TODO: проверить начальное значение $participants
      */
-    public function __construct(string $name, User $owner, string $description = null)
+    public function __construct(string $name, User $owner, ?string $description = null)
     {
         $this->name = $name;
         $this->description = $description;
@@ -84,7 +84,7 @@ class Board
         $this->description = $value;
     }
     
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -97,5 +97,25 @@ class Board
     public function getName(): string
     {
         return $this->name;
+    }
+    
+    public function getColumns()
+    {
+        return $this->columns;
+    }
+
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    public function setColumns($columns): void
+    {
+        $this->columns = $columns;
+    }
+
+    public function setOwner($owner): void
+    {
+        $this->owner = $owner;
     }
 }
