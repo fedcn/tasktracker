@@ -44,12 +44,12 @@ class Task
     private $createdAt;
     
     /**
-     * @ORM\Column(type="datetime", name="changed_at", nullable="true")
+     * @ORM\Column(type="datetime", name="changed_at", nullable=true)
      */
     private $changedAt;
     
     /**
-     * @ORM\Column(type="datetime", name="deadline_at", nullable="true")
+     * @ORM\Column(type="datetime", name="deadline_at", nullable=true)
      */
     private $deadlineAt;
     
