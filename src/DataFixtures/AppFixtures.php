@@ -9,8 +9,11 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        // create 20 users
+        for ($i = 0; $i < 20; ++$i) {
+            $user = new \App\Tasktracker\Entity\User("user{$i}", "user{$i}@gmail.com");
+            $manager->persist($user);
+        }
 
         $manager->flush();
     }
