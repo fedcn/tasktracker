@@ -63,7 +63,7 @@ class UserController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->userService->create($form);
-            return $this->redirectToRoute('get_user', ['id' => $user->getId()]);
+            return $this->json($user->toArray());
         }
     
         return $this->json($form->getErrors());
