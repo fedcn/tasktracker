@@ -118,4 +118,15 @@ class Board
     {
         $this->owner = $owner;
     }
+    
+    public function getColumnsCount(): int
+    {
+        return count($this->columns);
+    }
+    
+    public function addColumn(Column $column)
+    {
+        $column->setOrder($this->getColumnsCount() + 1);
+        $this->columns[] = $column;
+    }
 }

@@ -41,14 +41,11 @@ class Column
     /**
      * @param string $name
      * @param \App\Tasktracker\Entity\Board $board
-     * @param int $order, порядок предыдущей колонки для той же доски
      * @return void
      */
-    public function __construct(string $name, Board $board, int $order)
+    public function __construct(string $name)
     {
-        $this->board = $board;
         $this->name = $name;
-        $this->order = $order + 1;
     }
     
     public function move(Column $from, Column $to)
@@ -66,5 +63,15 @@ class Column
     public function getName(): string
     {
         return $this->name;
+    }
+    
+    public function getOrder(): int
+    {
+        return $this->order;
+    }
+    
+    public function setOrder(int $order)
+    {
+        $this->order = $order;
     }
 }
