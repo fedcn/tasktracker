@@ -82,7 +82,7 @@ class UserController extends AbstractController
         $form->load($data);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->userService->update($model);
+            $this->userService->update($model, $form);
             return $this->json($model);
         }
 

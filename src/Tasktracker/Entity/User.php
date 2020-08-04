@@ -63,9 +63,20 @@ class User
         return $this->email;
     }
 
+    public function setEmail($value)
+    {
+        return $this->email = $value;
+    }
+
     public function getName()
     {
         return $this->name;
+    }
+
+    public function setName($value)
+    {
+        $this->name = $value;
+        return $this;
     }
 
     public function getOwnedBoards()

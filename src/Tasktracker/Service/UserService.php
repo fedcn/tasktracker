@@ -27,8 +27,10 @@ class UserService
         }
     }
     
-    public function update(User $model): bool
+    public function update(User $model, UserFilter $form): bool
     {
+        $model->setName($form->name);
+        $model->setEmail($form->email);
         try {
             $this->userRepository->update($model);
             return true;
