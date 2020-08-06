@@ -37,7 +37,7 @@ class BoardController extends AbstractController
     }
     
     /**
-     * @Route("/user/{id}", name="get_user", methods={"GET"})
+     * @Route("/board/{id}", name="get_board", methods={"GET"})
      */
     public function read(string $id): object
     {

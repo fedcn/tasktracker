@@ -16,7 +16,7 @@ class BoardService
         $this->boardRepository = $boardRepository;
     }
     
-    public function create(BoardForm $form): ?User
+    public function create(BoardForm $form): ?Board
     {
         $model = new Board($form->name, $form->owner, $form->description);
         try {
