@@ -15,3 +15,6 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     && docker-php-ext-enable xdebug
 RUN apk add git
 RUN echo "xdebug.idekey=\${idekey}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apk add git
