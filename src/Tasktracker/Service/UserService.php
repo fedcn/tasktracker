@@ -3,7 +3,7 @@
 namespace App\Tasktracker\Service;
 
 use App\Tasktracker\Entity\User;
-use App\Tasktracker\Entity\UserFilter;
+use App\Tasktracker\Form\UserForm;
 use App\Tasktracker\Repository\UserRepository;
 
 class UserService
@@ -16,7 +16,7 @@ class UserService
         $this->userRepository = $userRepository;
     }
     
-    public function create(UserFilter $form): ?User
+    public function create(UserForm $form): ?User
     {
         $model = new User($form->name, $form->email);
         try {
@@ -27,7 +27,7 @@ class UserService
         }
     }
     
-    public function update(User $model, UserFilter $form): bool
+    public function update(User $model, UserForm $form): bool
     {
         $model->setName($form->name);
         $model->setEmail($form->email);

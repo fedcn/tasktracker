@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Tasktracker\Entity\UserFilter;
+use App\Tasktracker\Form\UserForm;
 use App\Tasktracker\Repository\UserRepository;
 use App\Tasktracker\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +39,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/{id}", name="get_user", methods={"GET"})
      */
-    public function get(string $id): object
+    public function read(string $id): object
     {
         $user = $this->userRepository->findByPk($id);
         
@@ -58,7 +58,7 @@ class UserController extends AbstractController
     public function create(Request $request): object
     {
         $data = json_decode($request->getContent(), true);
-        $form = new UserFilter();
+        $form = new UserForm();
         $form->load($data);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -77,13 +77,13 @@ class UserController extends AbstractController
     public function update(string $id, Request $request): object
     {
         $model = $this->userRepository->findByPk($id);
-        $form = UserFilter::createFromModel($model);
+        $form = UserForm::createFromModel($model);
         $data = json_decode($request->getContent(), true);
         $form->load($data);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->userService->update($model, $form);
-            return $this->json($model);
+            return $this->json($model->toArray());
         }
 
         return $this->json($form->getErrors());

@@ -48,12 +48,13 @@ class Board
     /**
      * @param string $name
      * @param \App\Tasktracker\Entity\User $owner
-     * @param ArrayCollection $participants
      * @param string $description
-     * @TODO: проверить начальное значение $participants
      */
     public function __construct(string $name, User $owner, ?string $description = null)
     {
+        if (empty(trim($name))) {
+            throw new \InvalidArgumentException("Board name must not be empty");
+        }
         $this->name = $name;
         $this->description = $description;
         $this->columns = new ArrayCollection();
@@ -98,25 +99,41 @@ class Board
     {
         return $this->name;
     }
-    
-    public function getColumns()
+
+    public function setOwner($owner): void
     {
-        return $this->columns;
+        $this->owner = $owner;
     }
 
     public function getOwner()
     {
         return $this->owner;
     }
-
+    
     public function setColumns($columns): void
     {
         $this->columns = $columns;
     }
-
-    public function setOwner($owner): void
+    
+    public function addColumn(Column $column)
     {
-        $this->owner = $owner;
+        $column->setOrder($this->getColumnsCount() + 1);
+        $this->columns[] = $column;
+    }
+    
+    public function removeColumn(Column $column)
+    {
+        $this->columns->removeElement($column);
+        $order = 1;
+        foreach ($this->columns as $column) {
+            $column->setOrder($order);
+            $order++;
+        }
+    }
+    
+    public function getColumns()
+    {
+        return $this->columns;
     }
     
     public function getColumnsCount(): int
@@ -124,9 +141,12 @@ class Board
         return count($this->columns);
     }
     
-    public function addColumn(Column $column)
+    public function toArray()
     {
-        $column->setOrder($this->getColumnsCount() + 1);
-        $this->columns[] = $column;
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+        ];
     }
 }
