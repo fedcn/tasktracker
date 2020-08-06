@@ -32,7 +32,6 @@ class ColumnTest extends \Codeception\Test\Unit
             $this->assertEquals($board->getColumnsCount(), $column->getOrder());
             $this->assertEquals($expectedCount, $board->getColumnsCount());
         }
-        var_dump($board);exit();
     }
     
     public function dataProvider()
