@@ -2,24 +2,25 @@
 
 namespace App\Controller;
 
+use App\Tasktracker\Entity\UserFilter;
 use App\Tasktracker\Repository\UserRepository;
+use App\Tasktracker\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Tasktracker\Form\UserType;
-use App\Tasktracker\Entity\User;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserController extends AbstractController
 {
-    /**
-     * @var UserRepository
-     */
+    /** @var UserRepository */
     private $userRepository;
     
-    public function __construct(UserRepository $userRepository)
+    /** @var UserService */
+    private $userService;
+    
+    public function __construct(UserRepository $userRepository, UserService $userService)
     {
         $this->userRepository = $userRepository;
+        $this->userService = $userService;
     }
     
     /**
@@ -29,6 +30,7 @@ class UserController extends AbstractController
     public function list(): object
     {
         $users = $this->userRepository->findAll();
+        
         return $this->json(array_map(function ($item) {
             return $item->toArray();
         }, $users));
@@ -39,9 +41,7 @@ class UserController extends AbstractController
      */
     public function get(string $id): object
     {
-//        var_dump($id);exit;
         $user = $this->userRepository->findByPk($id);
-        
         
         if (!$user) {
             return $this->json(['errors' => "not found"], 404);
@@ -55,27 +55,18 @@ class UserController extends AbstractController
      * @return object
      * @Route("/user", name="create_user", methods={"POST"})
      */
-    public function create(Request $request, ValidatorInterface $validator): object
+    public function create(Request $request): object
     {
         $data = json_decode($request->getContent(), true);
-        $form = new \App\Tasktracker\Entity\UserFilter();
+        $form = new UserFilter();
         $form->load($data);
         
-        $errors = [];
-        foreach ($validator->validate($form)->getIterator() as $error) {
-            if (isset($errors[$error->getPropertyPath()])) {
-                $errors[$error->getPropertyPath()] .= " " . $error->getMessage();
-            } else {
-                $errors[$error->getPropertyPath()] = $error->getMessage();
-            }
-        }
-        if (count($errors) == 0) {
-            $user = new User($form->name, $form->email);
-            $this->userRepository->create($user);
-            return $this->redirectToRoute('get_user', ['id' => $user->getId()]);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->userService->create($form);
+            return $this->json($user->toArray());
         }
     
-        return $this->json($errors);
+        return $this->json($form->getErrors());
     }
     
     /**
@@ -83,16 +74,16 @@ class UserController extends AbstractController
      * @return object
      * @Route("/user/{id}", name="update_user", methods={"PATCH"})
      */
-    public function update(string $id, Request $request, ValidatorInterface $validator): object
+    public function update(string $id, Request $request): object
     {
-        $updatedModel = $this->userRepository->findByPk($id);
-        $form = $this->createForm(UserType::class, $updatedModel);
+        $model = $this->userRepository->findByPk($id);
+        $form = UserFilter::createFromModel($model);
         $data = json_decode($request->getContent(), true);
-        $form->submit($data);
+        $form->load($data);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->userRepository->save($updatedModel);
-            return $this->json($updatedModel);
+            $this->userService->update($model, $form);
+            return $this->json($model);
         }
 
         return $this->json($form->getErrors());
